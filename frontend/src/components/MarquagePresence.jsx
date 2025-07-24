@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import api from '../services/api';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { Table, Tag, Button, Spin, message } from 'antd';
+import { Table,  Button, Spin, message } from 'antd';
 
 export default function PresenceCours() {
   const { token } = useContext(AuthContext);

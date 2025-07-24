@@ -8,9 +8,7 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss()
   ],
-<<<<<<< HEAD
    base: './',
-=======
    build: {
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
@@ -23,5 +21,4 @@ export default defineConfig({
       }
     }
   }
->>>>>>> 590755b4a8822aedf84acb3f3ada1bd045cf849b
 })
