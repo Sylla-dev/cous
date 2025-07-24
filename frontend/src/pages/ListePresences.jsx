@@ -28,14 +28,14 @@ export default function ListePresences() {
     fetchPresences();
   }, [token]);
 
-  //const calculateStats = (elevePresences) => {
-    //const total = elevePresences.length;
-    //const presentes = elevePresences.filter((p) => p.status === 'présent').length;
-    //const justifiees = elevePresences.filter((p) => p.status === 'absent_justifie').length;
-    //const injustifiees = elevePresences.filter((p) => p.status === 'absent_non_justifie').length;
-    //const taux = total > 0 ? ((presentes / total) * 100).toFixed(1) : 0;
-    //return { total, presentes, justifiees, injustifiees, taux };
-  //};
+  const calculateStats = (elevePresences) => {
+    const total = elevePresences.length;
+    const presentes = elevePresences.filter((p) => p.status === 'présent').length;
+    const justifiees = elevePresences.filter((p) => p.status === 'absent_justifie').length;
+    const injustifiees = elevePresences.filter((p) => p.status === 'absent_non_justifie').length;
+    const taux = total > 0 ? ((presentes / total) * 100).toFixed(1) : 0;
+    return { total, presentes, justifiees, injustifiees, taux };
+  };
 
   //const exportPDF = () => {
     //if (!pdfRef.current) return;
@@ -73,22 +73,22 @@ export default function ListePresences() {
     { title: 'Cours', dataIndex: 'cours', key: 'cours' },
     { title: 'Date du cours', dataIndex: 'dateCours', key: 'dateCours' },
     {
-  //title: 'Statut',
- // dataIndex: 'status',
-  //key: 'status',
-  //render: (status) => {
-    //const color =
-      //status === 'présent' ? 'green' :
-      //status === 'absent_justifie' ? 'orange' :
-      //status === 'absent_non_justifie' ? 'red' : 'default';
-    //const label =
-      //status === 'présent' ? 'Présent' :
-      //status === 'absent_justifie' ? 'Absent Justifié' :
-      //status === 'absent_non_justifie' ? 'Absent Injustifié' : status;
-    //return <Tag color={color}>{label}</Tag>;
-      //},
-    //},
-  //];
+  title: 'Statut',
+  dataIndex: 'status',
+  key: 'status',
+  render: (status) => {
+  const color =
+      status === 'présent' ? 'green' :
+      status === 'absent_justifie' ? 'orange' :
+      status === 'absent_non_justifie' ? 'red' : 'default';
+    const label =
+      status === 'présent' ? 'Présent' :
+      status === 'absent_justifie' ? 'Absent Justifié' :
+      status === 'absent_non_justifie' ? 'Absent Injustifié' : status;
+    return <Tag color={color}>{label}</Tag>;
+      },
+    },
+  ];
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
