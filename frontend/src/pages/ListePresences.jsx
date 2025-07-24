@@ -2,14 +2,14 @@ import { useEffect, useRef, useState, useContext } from 'react';
 import api from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 import { Table, Spin, Empty, Tag, Button } from 'antd';
-import html2pdf from 'html2pdf.js';
+//import html2pdf from 'html2pdf.js';
 import HistoriquePresence from '../components/HistoriquePresence';
 
 export default function ListePresences() {
   const { token } = useContext(AuthContext);
   const [presences, setPresences] = useState([]);
   const [loading, setLoading] = useState(true);
-  const pdfRef = useRef();
+  //const pdfRef = useRef();
 
   useEffect(() => {
     const fetchPresences = async () => {
@@ -28,28 +28,28 @@ export default function ListePresences() {
     fetchPresences();
   }, [token]);
 
-  const calculateStats = (elevePresences) => {
-    const total = elevePresences.length;
-    const presentes = elevePresences.filter((p) => p.status === 'présent').length;
-    const justifiees = elevePresences.filter((p) => p.status === 'absent_justifie').length;
-    const injustifiees = elevePresences.filter((p) => p.status === 'absent_non_justifie').length;
-    const taux = total > 0 ? ((presentes / total) * 100).toFixed(1) : 0;
-    return { total, presentes, justifiees, injustifiees, taux };
-  };
+  //const calculateStats = (elevePresences) => {
+    //const total = elevePresences.length;
+    //const presentes = elevePresences.filter((p) => p.status === 'présent').length;
+    //const justifiees = elevePresences.filter((p) => p.status === 'absent_justifie').length;
+    //const injustifiees = elevePresences.filter((p) => p.status === 'absent_non_justifie').length;
+    //const taux = total > 0 ? ((presentes / total) * 100).toFixed(1) : 0;
+    //return { total, presentes, justifiees, injustifiees, taux };
+  //};
 
-  const exportPDF = () => {
-    if (!pdfRef.current) return;
-    html2pdf()
-      .set({
-        margin: 0.5,
-        filename: 'historique_presences.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' },
-      })
-      .from(pdfRef.current)
-      .save();
-  };
+  //const exportPDF = () => {
+    //if (!pdfRef.current) return;
+    //html2pdf()
+      //.set({
+        //margin: 0.5,
+        //filename: 'historique_presences.pdf',
+        //image: { type: 'jpeg', quality: 0.98 },
+        //html2canvas: { scale: 2 },
+        //jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' },
+      //})
+      //.from(pdfRef.current)
+      //.save();
+  //};
 
   // Ici on ne groupe plus forcément, on affiche chaque présence en détail, ou tu peux garder grouping par élève pour stats
   // Exemple affichage détail par présence:
@@ -73,22 +73,22 @@ export default function ListePresences() {
     { title: 'Cours', dataIndex: 'cours', key: 'cours' },
     { title: 'Date du cours', dataIndex: 'dateCours', key: 'dateCours' },
     {
-  title: 'Statut',
-  dataIndex: 'status',
-  key: 'status',
-  render: (status) => {
-    const color =
-      status === 'présent' ? 'green' :
-      status === 'absent_justifie' ? 'orange' :
-      status === 'absent_non_justifie' ? 'red' : 'default';
-    const label =
-      status === 'présent' ? 'Présent' :
-      status === 'absent_justifie' ? 'Absent Justifié' :
-      status === 'absent_non_justifie' ? 'Absent Injustifié' : status;
-    return <Tag color={color}>{label}</Tag>;
-      },
-    },
-  ];
+  //title: 'Statut',
+ // dataIndex: 'status',
+  //key: 'status',
+  //render: (status) => {
+    //const color =
+      //status === 'présent' ? 'green' :
+      //status === 'absent_justifie' ? 'orange' :
+      //status === 'absent_non_justifie' ? 'red' : 'default';
+    //const label =
+      //status === 'présent' ? 'Présent' :
+      //status === 'absent_justifie' ? 'Absent Justifié' :
+      //status === 'absent_non_justifie' ? 'Absent Injustifié' : status;
+    //return <Tag color={color}>{label}</Tag>;
+      //},
+    //},
+  //];
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
